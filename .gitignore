@@ -20,6 +20,8 @@ $RECYCLE.BIN/
 
 # Python autogenned files
 *.pyc
+/dist
+/build
 
 # =========================
 # Capcom Files

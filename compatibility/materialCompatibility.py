@@ -13,6 +13,17 @@ from copy import deepcopy
 import sys
 import os
 
+def appPath(path):
+    if getattr(sys, 'frozen', False):
+        # If the application is run as a bundle, the pyInstaller bootloader
+        # extends the sys module by a flag frozen=True and sets the app 
+        # Inside Exe: path into variable _MEIPASS'.
+        # Outside Exe: os.path.dirname(sys.executable)
+        application_path = Path(sys._MEIPASS)#os.path.dirname(sys.executable)
+    elif __file__:
+        application_path = Path(os.path.dirname(os.path.dirname(__file__)))
+    return application_path.joinpath(path)
+
 class MaterialCompatibilizer():
     def __init__(self,altList = []):
         self.loadMaterialTable()
@@ -28,7 +39,7 @@ class MaterialCompatibilizer():
         return os.path.join(base_path, relative_path)
             
     def loadMaterialTable(self):
-        listPath = r"Master_MtList_i.mrl3"
+        listPath = appPath(r"Master_MtList_i.mrl3")
         im = IBMrl3()
         with open(self.resource_path(listPath),"rb") as tFile:
             data = tFile.read()
