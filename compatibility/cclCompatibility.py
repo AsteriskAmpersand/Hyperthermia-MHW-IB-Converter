@@ -21,9 +21,9 @@ class CclCompatibilizer():
             for ix,i in enumerate(record.unknownFrontBytesCont):
                 if ix>0:
                     if i == 0:
-                        record.unknownFrontBytesCont[i] = -51
+                        record.unknownFrontBytesCont[ix] = -51
             for ix,i in enumerate(record.unknownEndBytes):
                 if ix>11:
                     if i == 0:
-                        record.unknownEndBytes[i] = -51       
+                        record.unknownEndBytes[ix] = -51       
                     
