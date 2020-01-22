@@ -58,7 +58,7 @@ class ARecord(PyCStruct):
 	("unknownFloatThree","float"),#0
 	("unknownFloatFour","float"),#0.1
 	("windMultiplier","float"),
-	("lod","int"),])
+	("lod","byte[4]"),])
     
     def construct(self,data):
         data["fixedNegativeOne"] = [-1]*4
@@ -136,6 +136,7 @@ class BRecord(PyCStruct):
         
 class IBBRecord(BRecord):
     fields = deepcopy(BRecord.fields)
+    fields["unknownExtendedFloat"]="float"
     fields["unknownExtendedByteSet"]="byte[12]"
     def __init__(self,brecord = None,*args,**kwargs):
         super().__init__(*args,**kwargs)
@@ -145,6 +146,7 @@ class IBBRecord(BRecord):
     def fromBRecord(self,brecord):
         for field in brecord.fields:
             setattr(self,field,getattr(brecord,field))
+        setattr(self,"unknownExtendedFloat",1.0)
         setattr(self,"unknownExtendedByteSet",[-51]*12)
     
 class CtcChain():
@@ -175,6 +177,8 @@ class Ctc():
         self.Header.unknownsConstantIntSet[0] = 28
         for a in self.arecords:
             a.unknownByteSetCont = [-51]*12
+            a.lod[2] = -51
+            a.lod[3] = -51
         self.brecords = [IBBRecord(brecord) for brecord in self.brecords]
                             
     def serialize(self):

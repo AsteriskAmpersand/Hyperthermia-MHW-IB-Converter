@@ -35,7 +35,7 @@ class CompatibilityEngine():
                     if not(debug):
                         print("Error compatibilizing %s. Skipped."%file)
                     else:
-                        print("Error compatibilizing %s. Error:\n%s"%file,e)
+                        print("Error compatibilizing %s. Error:\n%s"%(file,e))
     
     def compatibilize(self,filepath):
         print("Converting %s"%filepath)
@@ -45,9 +45,9 @@ class CompatibilityEngine():
 if __name__== "__main__":
     from pathlib import Path
     import sys
-    debug = True
+    debug = True#False
     if len(sys.argv)<2:
-        path = Path(input("Drag file or directory to update to Iceborne (visuals only).\n").replace('"',"").replace("'","")
+        path = Path(input("Drag file or directory to update to Iceborne (visuals only).\n").replace('"',"").replace("'",""))
     else:
         if len(sys.argv)>2:
             if sys.argv[2] == "--debug":

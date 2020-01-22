@@ -67,7 +67,7 @@ class WeaponCompatibilizer(EVGenericCompatibilizer):
         subtype = path.stem[:-3]
         if "_" in subtype:
             subtype = subtype[subtype.index("_")+1:]
-        return self.iroot.joinpath("%s001\%mod\%s001.evwp"%(self.wp,subtype))
+        return self.iroot.joinpath("%s001\mod\%s001.evwp"%(self.wp,subtype))
     
 weaponList = ["bow","caxe","gun","ham","hbg","hue","lan","lbg","mus","one",
               "saxe","sou","swo","two"]
@@ -89,8 +89,8 @@ bodies = {"m":BodyCompatibilizer("m"),"f":BodyCompatibilizer("f")}
 class HeadCompatibilizer(EVGenericCompatibilizer):
     suffixRegex = "*.evhl"
     hollow = appPath(r"evxx_resources\f_helmXXX_0000.evhl")
-    fullhairf = appPath(r"evxx_resources\pl\f_equip\pl063_0000\helm\mod\f_helm063_0000.evhl")
-    fullhairm = appPath(r"evxx_resources\pl\m_equip\pl063_0000\helm\mod\m_helm063_0000.evhl")
+    fullhairf = appPath(r"evxx_resources\ib\pl\f_equip\pl063_0000\helm\mod\f_helm063_0000.evhl")
+    fullhairm = appPath(r"evxx_resources\ib\pl\m_equip\pl063_0000\helm\mod\m_helm063_0000.evhl")
     def __init__(self, g):
         self.oroot = appPath(r"evxx_resources\base\pl\%s_equip"%g)
         self.iroot = appPath(r"evxx_resources\ib\pl\%s_equip"%g)
@@ -107,9 +107,9 @@ class EVCompatibilizer():
     def __init__(self):
         while True:
             try:
-                self.body = {"D":"Default","C":"Input","S":None}[input("Use [D]efault Body, [S]earch Match or [C]ase by Case Basis?: ").upper()]
-                self.head = {"H":"H","F":"F","C":"Input","S":None}[input("Use [H]ollow Head, [F]ull Hair, [S]earch Match or [C]ase by Case Basis?: ").upper()]
-                self.weapons = {"D":"Default","C":"Input","S":None}[input("Use [D]efault Weapon Position, [S]earch Match or [C]ase by Case Basis?: ").upper()]
+                self.body = {"D":"Default","C":"Input","S":None}[input("Use [D]efault Body, [S]earch Match or [C]ase by Case Basis for EVBD?: ").upper()]
+                self.head = {"H":"H","F":"F","C":"Input","S":None}[input("Use [H]ollow Head, [F]ull Hair, [S]earch Match or [C]ase by Case Basis for EVHL?: ").upper()]
+                self.weapons = {"D":"Default","C":"Input","S":None}[input("Use [D]efault Weapon Position, [S]earch Match or [C]ase by Case Basis for EVWP?: ").upper()]
                 break
             except:
                 pass
