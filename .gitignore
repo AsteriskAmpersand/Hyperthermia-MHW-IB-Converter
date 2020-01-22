@@ -18,6 +18,11 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Python autogenned files
+*.pyc
+
 # =========================
-# Operating System Files
+# Capcom Files
 # =========================
+/evxx_resources/base
+/evxx_resources/ib
