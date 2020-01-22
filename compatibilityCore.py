@@ -20,16 +20,22 @@ class CompatibilityEngine():
         return {".mrl3":self.mrl3,".ctc":self.ctc,".ccl":self.ccl,
                 ".evwp":self.ev,".evhl":self.ev,".evbd":self.ev}[filePath.suffix]
     
-    def convert(self,path):
+    def convert(self,path,debug):
         if path.is_dir():
-            self.recursiveCompatibilize(path)
+            self.recursiveCompatibilize(path,debug)
         else:
             self.compatibilize(path)
     
-    def recursiveCompatibilize(self,root):
+    def recursiveCompatibilize(self,root,debug):
         for extension in ["*.mrl3","*.ctc","*.ccl","*.evwp","*.evhl","*.evbd"]:
             for file in root.rglob(extension):
-                self.compatibilize(file)
+                try:
+                    self.compatibilize(file)
+                except Exception as e:
+                    if not(debug):
+                        print("Error compatibilizing %s. Skipped."%file)
+                    else:
+                        print("Error compatibilizing %s. Error:\n%s"%file,e)
     
     def compatibilize(self,filepath):
         print("Converting %s"%filepath)
@@ -39,12 +45,16 @@ class CompatibilityEngine():
 if __name__== "__main__":
     from pathlib import Path
     import sys
-    engine = CompatibilityEngine()
+    debug = True
     if len(sys.argv)<2:
-        print("Drag file or directory to update to Iceborne (visuals only).")
-        path = Path(r"E:\IBProjects\ArmorPorts\Lightning - Copy")
-        engine.convert(path)
+        path = Path(input("Drag file or directory to update to Iceborne (visuals only).\n").replace('"',"").replace("'","")
     else:
+        if len(sys.argv)>2:
+            if sys.argv[2] == "--debug":
+                debug = True
         path = Path(sys.argv[1])
-        engine.convert(path)
+    engine = CompatibilityEngine()
+    engine.convert(path, debug)
+    input("Conversion Process Completed.")
+        
     
