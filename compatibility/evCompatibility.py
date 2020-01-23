@@ -66,7 +66,7 @@ class WeaponCompatibilizer(EVGenericCompatibilizer):
     def defaultCompatibilize(self,path,default):
         subtype = path.stem[:-3]
         if "_" in subtype:
-            subtype = subtype[subtype.index("_")+1:]
+            subtype = subtype.replace("bs_","")
         return self.iroot.joinpath("%s001\mod\%s001.evwp"%(self.wp,subtype))
     
 weaponList = ["bow","caxe","gun","ham","hbg","hue","lan","lbg","mus","one",

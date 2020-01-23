@@ -24,6 +24,7 @@ def appPath(path):
         application_path = Path(os.path.dirname(os.path.dirname(__file__)))
     return application_path.joinpath(path)
 
+
 class MaterialCompatibilizer():
     def __init__(self,altList = []):
         self.loadMaterialTable()
@@ -39,7 +40,10 @@ class MaterialCompatibilizer():
         return os.path.join(base_path, relative_path)
             
     def loadMaterialTable(self):
-        listPath = appPath(r"Master_MtList_i.mrl3")
+        try:
+            listPath = appPath(r"Master_MtList_i.mrl3")
+        except:
+            listPath = r"..\Master_MtList_i.mrl3"
         im = IBMrl3()
         with open(self.resource_path(listPath),"rb") as tFile:
             data = tFile.read()
@@ -126,7 +130,11 @@ class MaterialCompatibilizer():
                 for field in oldParamArray.fields:
                     if "align" not in field:
                         if field in paramArray.fields:
-                            setattr(paramArray,field,getattr(oldParamArray,field))
+                            if paramArray.fields[field] != oldParamArray.fields[field]:
+                                for i,(l,r) in enumerate(zip(getattr(paramArray,field),getattr(oldParamArray,field))):
+                                    getattr(paramArray,field)[i] = getattr(oldParamArray,field)[i]
+                            else:
+                                setattr(paramArray,field,getattr(oldParamArray,field))
             else:
                 print(type(newMat.paramArray).__name__)
                 print(type(material.paramArray).__name__)
@@ -137,5 +145,3 @@ class MaterialCompatibilizer():
             return deepcopy(self.hashMap[matHash]), self.masterResources
         else:
             return deepcopy(self.altMap[matHash]), self.altResources[matHash]
-        
-
