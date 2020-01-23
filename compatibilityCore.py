@@ -30,13 +30,7 @@ class CompatibilityEngine():
     def recursiveCompatibilize(self,root,debug):
         for extension in ["*.mrl3","*.ctc","*.ccl","*.evwp","*.evhl","*.evbd"]:
             for file in root.rglob(extension):
-                try:
-                    self.compatibilize(file)
-                except Exception as e:
-                    if not(debug):
-                        self.output("Error compatibilizing %s. Skipped."%file)
-                    else:
-                        self.output("Error compatibilizing %s. Error:\n%s"%(file,e))
+                self.compatibilize(file, debug)
     
     def compatibilize(self,filepath,debug):
         self.output("Converting %s"%filepath)

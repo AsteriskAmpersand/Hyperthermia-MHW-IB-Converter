@@ -177,8 +177,8 @@ class Ctc():
         self.Header.unknownsConstantIntSet[0] = 28
         for a in self.arecords:
             a.unknownByteSetCont = [-51]*12
-            a.lod[2] = -51
-            a.lod[3] = -51
+            a.lod[2] = -51 if not a.lod[2] else a.lod[2]
+            a.lod[3] = -51 if not a.lod[2] else a.lod[2]
         self.brecords = [IBBRecord(brecord) for brecord in self.brecords]
                             
     def serialize(self):

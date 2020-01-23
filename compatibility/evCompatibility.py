@@ -111,15 +111,15 @@ class EVCompatibilizer():
                     self.body = {"D":"Default","C":"Input","S":None}[input("Use [D]efault Body, [S]earch Match or [C]ase by Case Basis for EVBD?: ").upper()]
                     self.head = {"H":"H","F":"F","C":"Input","S":None}[input("Use [H]ollow Head, [F]ull Hair, [S]earch Match or [C]ase by Case Basis for EVHL?: ").upper()]
                     self.weapons = {"D":"Default","C":"Input","S":None}[input("Use [D]efault Weapon Position, [S]earch Match or [C]ase by Case Basis for EVWP?: ").upper()]
+                    def bodyInput(path): return input("Use Default Body EVBD for %s: [Y|N]"%path).upper()=="Y"
+                    self.bodyInput = bodyInput
+                    def weaponInput(path): return input("Use Default Weapon EVWP for %s: [Y|N]"%path).upper()=="Y"
+                    self.weaponInput = weaponInput
+                    def headInput(path): input("Use [H]ollow Head/[F]ull Hair/[S]earch for Match for EVHL for %s:"%path).upper()
+                    self.headInput = headInput
                     break
                 except:
                     pass
-                def bodyInput(path): return input("Use Default Body EVBD for %s: [Y|N]"%path).upper()=="Y"
-                self.bodyInput = staticmethod(bodyInput)
-                def weaponInput(path): return input("Use Default Weapon EVWP for %s: [Y|N]"%path).upper()=="Y"
-                self.weaponInput = staticmethod(weaponInput)
-                def headInput(path): input("Use [H]ollow Head/[F]ull Hair/[S]earch for Match for EVHL for %s:"%path).upper()
-                self.headInput = staticmethod(headInput)
         else:
             self.body = decider["Body"]
             self.head = decider["Head"]
