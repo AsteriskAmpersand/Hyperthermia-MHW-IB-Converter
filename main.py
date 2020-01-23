@@ -5,9 +5,11 @@ Created on Wed Jan 22 21:02:41 2020
 @author: AsteriskAmpersand
 """
 
+import os
 import sys
 from pathlib import Path
-from PyQt5 import uic, QtWidgets, QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
+from PyQt5.QtGui import QPalette, QColor, QIcon
 from gui.IBConverter import Ui_MainWindow
 from gui.OptionDialogue2 import Ui_Dialog as dialog2
 from gui.OptionDialogue3 import Ui_Dialog as dialog3
@@ -53,10 +55,19 @@ class Options3(QtWidgets.QDialog, dialog3):
         self.choice = "F"
         self.accept()
         return
+    
+def appPath(path):
+    if getattr(sys, 'frozen', False):
+        application_path = Path(sys._MEIPASS)
+    elif __file__:
+        application_path = Path(os.path.dirname(os.path.dirname(__file__)))
+    return application_path.joinpath(path)
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, arguments):
         super().__init__()
+        self.setWindowIcon(QIcon(str(appPath(r"icon\DodoSama.png"))))
+        print(str(appPath(r"icon\DodoSama.png")))
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle("Asterisk's Hyperthermia Converter")
@@ -193,6 +204,28 @@ class MainWindow(QtWidgets.QMainWindow):
     
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
+    
+    # Force the style to be the same on all OSs:
+    app.setStyle("Fusion")
+    
+    # Now use a palette to switch to dark colors:
+    palette = QPalette()
+    palette.setColor(QPalette.Window, QColor(53, 53, 53))
+    palette.setColor(QPalette.WindowText, QtCore.Qt.white)
+    palette.setColor(QPalette.Base, QColor(25, 25, 25))
+    palette.setColor(QPalette.AlternateBase, QColor(53, 53, 53))
+    palette.setColor(QPalette.ToolTipBase, QtCore.Qt.white)
+    palette.setColor(QPalette.ToolTipText, QtCore.Qt.white)
+    palette.setColor(QPalette.Text, QtCore.Qt.white)
+    palette.setColor(QPalette.Button, QColor(53, 53, 53))
+    palette.setColor(QPalette.ButtonText, QtCore.Qt.white)
+    palette.setColor(QPalette.BrightText, QtCore.Qt.red)
+    palette.setColor(QPalette.Link, QColor(42, 130, 218))
+    palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
+    palette.setColor(QPalette.HighlightedText, QtCore.Qt.black)
+    app.setPalette(palette)
+
+
     args = app.arguments()[1:]
     window = MainWindow(args)
     sys.exit(app.exec_())
