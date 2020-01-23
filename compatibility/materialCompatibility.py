@@ -116,7 +116,7 @@ class MaterialCompatibilizer():
                     binding.texIdx = typeMapping[key].texIdx
                 else:
                     if oldresources[binding.texIdx] not in newresources:
-                        newresources.append(oldresources[binding.texIdx])
+                        newresources.append(oldresources[binding.texIdx-1])
                         binding.texIdx = len(newresources)
 
     def updateParameters(self,material, newMat):

@@ -10,11 +10,12 @@ from compatibility.ctcCompatibility import CtcCompatibilizer as ctc
 from compatibility.materialCompatibility import MaterialCompatibilizer as mrl3
 from compatibility.evCompatibility import EVCompatibilizer as ev
 class CompatibilityEngine():
-    def __init__(self):
+    def __init__(self,decider = None,inputHandler = None, output = print):
         self.mrl3 = mrl3()
         self.ctc = ctc()
         self.ccl = ccl()
-        self.ev = ev()
+        self.ev = ev(decider,inputHandler)
+        self.output = output
         
     def detectType(self,filePath):
         return {".mrl3":self.mrl3,".ctc":self.ctc,".ccl":self.ccl,
@@ -33,12 +34,12 @@ class CompatibilityEngine():
                     self.compatibilize(file)
                 except Exception as e:
                     if not(debug):
-                        print("Error compatibilizing %s. Skipped."%file)
+                        self.output("Error compatibilizing %s. Skipped."%file)
                     else:
-                        print("Error compatibilizing %s. Error:\n%s"%(file,e))
+                        self.output("Error compatibilizing %s. Error:\n%s"%(file,e))
     
     def compatibilize(self,filepath):
-        print("Converting %s"%filepath)
+        self.output("Converting %s"%filepath)
         compatibilizer = self.detectType(filepath)
         compatibilizer.compatibilize(filepath)
         

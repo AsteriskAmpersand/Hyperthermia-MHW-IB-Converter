@@ -3,17 +3,17 @@
 block_cipher = None
 
 
-a = Analysis(['compatibilityCore.py'],
+a = Analysis(['main.py'],
              pathex=['E:\\IBProjects\\ArmorPorts\\LabComparison\\IBConverter'],
              binaries=[],
+             datas=[
+			 		(r"E:\IBProjects\ArmorPorts\LabComparison\IBConverter\icon","./icon"),
+					(r"E:\IBProjects\ArmorPorts\LabComparison\IBConverter\Master_MtList_i.mrl3","."),
+					],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
-             datas=[
-					(r"E:\IBProjects\ArmorPorts\LabComparison\IBConverter\icon","./icon"),
-					(r"E:\IBProjects\ArmorPorts\LabComparison\IBConverter\Master_MtList_i.mrl3","."),
-					],
              win_no_prefer_redirects=False,
              win_private_assemblies=False,
              cipher=block_cipher,
@@ -23,20 +23,16 @@ pyz = PYZ(a.pure, a.zipped_data,
 exe = EXE(pyz,
           a.scripts,
           a.binaries,
-		  Tree('E:\IBProjects\ArmorPorts\LabComparison\IBConverter\evxx_resources', "./evxx_resources"),
+          Tree('E:\IBProjects\ArmorPorts\LabComparison\IBConverter\evxx_resources', "./evxx_resources"),
           a.datas,
           [],
-          name='HyperthermiaCLI',
+          name='HyperthermiaConverter',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=True,
+          console=False,
 		  icon='icon\\DodoSama.ico',
 		  )
-		  
-
-					
-			 
