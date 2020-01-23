@@ -45,9 +45,10 @@ class CompatibilityEngine():
             compatibilizer.compatibilize(filepath)
         except Exception as e:
             if not(debug):
-                self.output("Error compatibilizing %s. Skipped."%file)
+                self.output("Error compatibilizing %s. Skipped."%filepath)
             else:
-                self.output("Error compatibilizing %s. Error:\n%s"%(file,e))
+                self.output("Error compatibilizing %s. Error:\n%s"%(filepath,e))
+                
 if __name__== "__main__":
     from pathlib import Path
     import sys
