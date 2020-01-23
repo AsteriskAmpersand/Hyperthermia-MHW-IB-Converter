@@ -8,9 +8,9 @@ Created on Wed Jan 22 21:02:41 2020
 import sys
 from pathlib import Path
 from PyQt5 import uic, QtWidgets, QtGui, QtCore
-from IBConverter import Ui_MainWindow
-from OptionDialogue2 import Ui_Dialog as dialog2
-from OptionDialogue3 import Ui_Dialog as dialog3
+from gui.IBConverter import Ui_MainWindow
+from gui.OptionDialogue2 import Ui_Dialog as dialog2
+from gui.OptionDialogue3 import Ui_Dialog as dialog3
 from compatibilityCore import CompatibilityEngine
 
 class Options2(QtWidgets.QDialog, dialog2):

@@ -25,7 +25,7 @@ class CompatibilityEngine():
         if path.is_dir():
             self.recursiveCompatibilize(path,debug)
         else:
-            self.compatibilize(path)
+            self.compatibilize(path,debug)
     
     def recursiveCompatibilize(self,root,debug):
         for extension in ["*.mrl3","*.ctc","*.ccl","*.evwp","*.evhl","*.evbd"]:
@@ -38,11 +38,16 @@ class CompatibilityEngine():
                     else:
                         self.output("Error compatibilizing %s. Error:\n%s"%(file,e))
     
-    def compatibilize(self,filepath):
+    def compatibilize(self,filepath,debug):
         self.output("Converting %s"%filepath)
         compatibilizer = self.detectType(filepath)
-        compatibilizer.compatibilize(filepath)
-        
+        try:
+            compatibilizer.compatibilize(filepath)
+        except Exception as e:
+            if not(debug):
+                self.output("Error compatibilizing %s. Skipped."%file)
+            else:
+                self.output("Error compatibilizing %s. Error:\n%s"%(file,e))
 if __name__== "__main__":
     from pathlib import Path
     import sys
