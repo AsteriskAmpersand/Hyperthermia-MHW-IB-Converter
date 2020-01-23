@@ -2,7 +2,7 @@
   <img src="https://cdn.discordapp.com/attachments/648568315937161233/669828862791647242/HyperthermiaLogo.fw.png">
 </p>
 
-## Hyperthemia: a Base Game MHW to Iceborne Asset Converter
+## Hyperthemia: A Base Game MHW to Iceborne Asset Converter
 Hyperthermia is an open source converter for MHW base game files into MHW:Iceborne format. This tool is intended as a modder's resource for quickly updating simple visual mods and helping with the updating process.
 
 It comes with a CLI and a GUI release. The GUI operates on the CLI code on the backend however so the behaviours are identical.
