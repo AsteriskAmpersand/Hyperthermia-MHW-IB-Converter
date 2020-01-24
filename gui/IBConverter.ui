@@ -315,10 +315,16 @@
       <item>
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>Many thanks to CrazyT for his dissasembly tools for the Shader files, 冰块冰块冰 Ice for his work on the CTC Structural changes, Statyk for his work on the CTC structural changes and testing, Silvris for his help with the research of EVXX structural differences and miscellaneous research tasks, asdasdasdasd, Nack, ๓ٱɼคɭٱร and LyraVeil for testing.</string>
+         <string>Many thanks to CrazyT for his dissasembly tools for the Shader files, 冰块冰块冰 Ice for his work on the CTC Structural changes, Statyk for his work on the CTC structural changes and testing, Silvris for his help with the research of EVXX structural differences and miscellaneous research tasks, asdasdasdasd, Nack, ๓ٱɼคɭٱร and LyraVeil for testing. Application code and mrl3, evhl, evbd, evwp research by Asterisk.
+
+The author can be found on the Modding Discord: https://discord.gg/gJwMdhK 
+And can be supported on Patreon: https://www.patreon.com/user?u=21034864</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
         </property>
        </widget>
       </item>

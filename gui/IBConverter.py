@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\IBProjects\ArmorPorts\LabComparison\IBConverter\IBConverter.ui'
+# Form implementation generated from reading ui file 'E:\IBProjects\ArmorPorts\LabComparison\IBConverter\gui\IBConverter.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
@@ -166,6 +166,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.addLayout(self.verticalLayout_14)
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
         self.label_4.setWordWrap(True)
+        self.label_4.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
         self.label_4.setObjectName("label_4")
         self.verticalLayout_13.addWidget(self.label_4)
         self.verticalLayout.addLayout(self.verticalLayout_13)
@@ -208,5 +209,8 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Log"))
         self.debug.setText(_translate("MainWindow", "Enable Debugging Mode"))
         self.convertButton.setText(_translate("MainWindow", "Convert"))
-        self.label_4.setText(_translate("MainWindow", "Many thanks to CrazyT for his dissasembly tools for the Shader files, 冰块冰块冰 Ice for his work on the CTC Structural changes, Statyk for his work on the CTC structural changes and testing, Silvris for his help with the research of EVXX structural differences and miscellaneous research tasks, asdasdasdasd, Nack, ๓ٱɼคɭٱร and LyraVeil for testing."))
+        self.label_4.setText(_translate("MainWindow", "Many thanks to CrazyT for his dissasembly tools for the Shader files, 冰块冰块冰 Ice for his work on the CTC Structural changes, Statyk for his work on the CTC structural changes and testing, Silvris for his help with the research of EVXX structural differences and miscellaneous research tasks, asdasdasdasd, Nack, ๓ٱɼคɭٱร and LyraVeil for testing. Application code and mrl3, evhl, evbd, evwp research by Asterisk.\n"
+"\n"
+"The author can be found on the Modding Discord: https://discord.gg/gJwMdhK \n"
+"And can be supported on Patreon: https://www.patreon.com/user?u=21034864"))
 

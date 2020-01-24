@@ -67,7 +67,6 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, arguments):
         super().__init__()
         self.setWindowIcon(QIcon(str(appPath(r"icon\DodoSama.png"))))
-        print(str(appPath(r"icon\DodoSama.png")))
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle("Asterisk's Hyperthermia Converter")

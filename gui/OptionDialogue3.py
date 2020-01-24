@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\IBProjects\ArmorPorts\LabComparison\IBConverter\3OptionDialogue.ui'
+# Form implementation generated from reading ui file 'E:\IBProjects\ArmorPorts\LabComparison\IBConverter\gui\3OptionDialogue.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #

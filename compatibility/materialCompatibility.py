@@ -49,7 +49,7 @@ class MaterialCompatibilizer():
             data = tFile.read()
             im.marshall(FileLike(data))
         self.masterTable = im
-        self.hashMap = {entry.Header.shaderHash:entry for entry in im.Materials}
+        self.hashMap = {entry.Header.shaderHash:entry for entry in reversed(im.Materials)}
         self.masterResources = im.Textures
             
     def loadAlternatives(self,alternativeList):
@@ -105,6 +105,7 @@ class MaterialCompatibilizer():
     
     def updateMatHeader(self,materialHead,newMatHead):
         updateables = ["materialNameHash","unkn4","unkn5","unkn6","unkn7","unkn8"]
+        print("%X/%X"%(materialHead.materialNameHash,newMatHead.materialNameHash))
         for f in updateables:
             setattr(newMatHead,f,getattr(materialHead,f))
     

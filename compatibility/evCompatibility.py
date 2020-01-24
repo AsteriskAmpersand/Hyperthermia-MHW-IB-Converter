@@ -22,6 +22,12 @@ def appPath(path):
 oldChunk = appPath(r"evxx_resources\base")
 newChunk = appPath(r"evxx_resources\ib")
 
+def zeroTrim(binaryFile):
+    for ix,val in enumerate(reversed(binaryFile)):
+        if val != 0:
+            break
+    return binaryFile[:-ix]
+
 class EVGenericCompatibilizer():
     oroot = oldChunk
     iroot = newChunk
@@ -29,7 +35,7 @@ class EVGenericCompatibilizer():
         self.oldNewMap = self.loadSuffixTable(self.oroot, self.iroot)
     def binaryCompatibilize(self,path):
         with path.open("rb") as df:
-            data = df.read()
+            data = zeroTrim(bytearray(df.read()))
         for file in self.oldNewMap:
             with file.open("rb") as candidate:
                 match = self.binaryMatch(data,candidate.read())
@@ -41,6 +47,7 @@ class EVGenericCompatibilizer():
             cpath = self.binaryCompatibilize(path)
         else:
             cpath = self.defaultCompatibilize(path,default)
+        print("%s -> %s"%(path.stem,cpath.stem))
         with path.open("wb") as of:
             with cpath.open("rb") as inf:
                 of.write(inf.read())        
@@ -51,6 +58,8 @@ class EVGenericCompatibilizer():
             table[oldPath] = newPath
         return table
     def binaryMatch(self,old,new):
+        if len(old) != len(new):
+            return False
         for l,r in zip(old,new):
             if l!=r:
                 return False
@@ -134,7 +143,7 @@ class EVCompatibilizer():
         suffix = path.suffix
         if ".evwp" in suffix:
             for wp in weaponList:
-                if wp in path.stem:
+                if wp in path.parent.parent.stem:
                     armoryCompatibilizer[wp].compatibilize(path,self.decide(path,"Weapons"))
         if ".evbd" in suffix:
             g = self.getGender(path)
@@ -166,4 +175,9 @@ class EVCompatibilizer():
                 return None
             else:
                 return dec
-
+            
+#if __name__ in "__main__":
+#    e = EVCompatibilizer()
+#    chunk = Path(r"E:\MHW\Merged")
+#    for ev in chunk.rglob("*.evwp"):
+#        e.compatibilize(ev)
