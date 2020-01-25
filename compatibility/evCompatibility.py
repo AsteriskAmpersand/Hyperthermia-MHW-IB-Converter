@@ -97,7 +97,8 @@ class BodyCompatibilizer(EVGenericCompatibilizer):
 bodies = {"m":BodyCompatibilizer("m"),"f":BodyCompatibilizer("f")}
 class HeadCompatibilizer(EVGenericCompatibilizer):
     suffixRegex = "*.evhl"
-    hollow = appPath(r"evxx_resources\f_helmXXX_0000.evhl")
+    hollowf = appPath(r"evxx_resources\f_helmXXX_0000.evhl")
+    hollowm = appPath(r"evxx_resources\m_helmXXX_0000.evhl")
     fullhairf = appPath(r"evxx_resources\ib\pl\f_equip\pl063_0000\helm\mod\f_helm063_0000.evhl")
     fullhairm = appPath(r"evxx_resources\ib\pl\m_equip\pl063_0000\helm\mod\m_helm063_0000.evhl")
     def __init__(self, g):
@@ -107,7 +108,8 @@ class HeadCompatibilizer(EVGenericCompatibilizer):
         super().__init__()
     def defaultCompatibilize(self,path,default):
         if default == "H":
-            return self.hollow
+            g = self.gender
+            return self.hollowf if g == "f" else self.hollowm
         else:
             return self.fullhairf if self.gender == "f" else self.fullhairm
 heads = {"m":HeadCompatibilizer("m"),"f":HeadCompatibilizer("f")}

@@ -196,6 +196,9 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.ui.convertEVHL.isChecked(): extensions.append("*.evhl")
         if self.ui.convertEVBD.isChecked(): extensions.append("*.evbd")
         if self.ui.convertEVWP.isChecked(): extensions.append("*.evwp")
+        if self.ui.convertWpDat.isChecked(): 
+            extensions.append("*.wp_dat")
+            extensions.append("*.wp_dat_g")
         return extensions       
     
     def getDebug(self):

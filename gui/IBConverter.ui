@@ -114,10 +114,23 @@
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="convertWpDat">
+                 <property name="text">
+                  <string>WP_DAT</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_3">
+               <property name="spacing">
+                <number>2</number>
+               </property>
                <item>
                 <widget class="QCheckBox" name="convertEVBD">
                  <property name="text">
@@ -165,6 +178,9 @@
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_5">
+               <property name="spacing">
+                <number>2</number>
+               </property>
                <item>
                 <widget class="QCheckBox" name="convertEVHL">
                  <property name="text">
@@ -222,6 +238,9 @@
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_4">
+               <property name="spacing">
+                <number>2</number>
+               </property>
                <item>
                 <widget class="QCheckBox" name="convertEVWP">
                  <property name="text">

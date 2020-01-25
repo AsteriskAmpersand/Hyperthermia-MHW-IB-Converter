@@ -9,17 +9,20 @@ from compatibility.cclCompatibility import CclCompatibilizer as ccl
 from compatibility.ctcCompatibility import CtcCompatibilizer as ctc
 from compatibility.materialCompatibility import MaterialCompatibilizer as mrl3
 from compatibility.evCompatibility import EVCompatibilizer as ev
+from compatibility.wpdatCompatibility import WpDatCompatibilizer as wpdat
 class CompatibilityEngine():
     def __init__(self,decider = None,inputHandler = None, output = print):
         self.mrl3 = mrl3()
         self.ctc = ctc()
         self.ccl = ccl()
         self.ev = ev(decider,inputHandler)
+        self.wpdat = wpdat()
         self.output = output
         
     def detectType(self,filePath):
         return {".mrl3":self.mrl3,".ctc":self.ctc,".ccl":self.ccl,
-                ".evwp":self.ev,".evhl":self.ev,".evbd":self.ev}[filePath.suffix]
+                ".evwp":self.ev,".evhl":self.ev,".evbd":self.ev,
+                ".wp_dat":self.wpdat, ".wp_dat_g":self.wpdat}[filePath.suffix]
     
     def convert(self,path,debug):
         if path.is_dir():
@@ -28,7 +31,8 @@ class CompatibilityEngine():
             self.compatibilize(path,debug)
     
     def recursiveCompatibilize(self,root,debug):
-        for extension in ["*.mrl3","*.ctc","*.ccl","*.evwp","*.evhl","*.evbd"]:
+        for extension in ["*.mrl3","*.ctc","*.ccl","*.evwp","*.evhl","*.evbd",
+                          "*.wp_dat","*.wp_dat_g"]:
             for file in root.rglob(extension):
                 self.compatibilize(file, debug)
     
