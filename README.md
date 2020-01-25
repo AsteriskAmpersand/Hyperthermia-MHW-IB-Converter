@@ -30,3 +30,6 @@ The header is updated to match Iceborne's new headers. A section with boilerplat
 
 #### EVXX
 Because of the lack of research into the format this files are heurstically matched. The user is given the option of overriding the heuristic with a default (for body it's pl001, for weapons it's the evwp of the first weapon model on the weapon's class) or a premade file (hollow head or untouched head for evhl). The heuristic does binary comparisons of the evxx file against all evxx files in the base game version, if a match is found the equivalent evxx is loaded from the iceborne files and used instead. If the heuristic fails then it falls back to a default value.
+
+#### WP_DAT
+Matches the entry indices between the base game wp_dat and the iceborne wp_dat. Uses this mapping to transpose player edits of visual fields to the iceborne wp_dat.
