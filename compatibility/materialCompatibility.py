@@ -79,9 +79,9 @@ class MaterialCompatibilizer():
             for i in range(len(m.Materials)):
                 try:
                     m.Materials[i] = self.compatibilizeMaterial(resources,m.Materials[i])
-                except ValueError as e:
-                    print("Error Updating %s:"%materialPath + str(e))
-                    return
+                except:
+                    #print("Error Updating %s"%materialPath + str(e))
+                    raise
             m.updateCountsAndOffsets()
             newMat = m.serialize()
         with open(materialPath,"wb") as mrl3File:
@@ -105,7 +105,7 @@ class MaterialCompatibilizer():
     
     def updateMatHeader(self,materialHead,newMatHead):
         updateables = ["materialNameHash","unkn4","unkn5","unkn6","unkn7","unkn8"]
-        print("%X/%X"%(materialHead.materialNameHash,newMatHead.materialNameHash))
+        #print("%X/%X"%(materialHead.materialNameHash,newMatHead.materialNameHash))
         for f in updateables:
             setattr(newMatHead,f,getattr(materialHead,f))
     
@@ -137,9 +137,9 @@ class MaterialCompatibilizer():
                             else:
                                 setattr(paramArray,field,getattr(oldParamArray,field))
             else:
-                print(type(newMat.paramArray).__name__)
-                print(type(material.paramArray).__name__)
-                raise ValueError
+                #print(type(paramArray).__name__)
+                #print('\n'.join([type(p).__name__ for p in material.paramArray]))
+                raise ValueError("Catastrophic Constant Buffer Corruption.")
         
     def getMatch(self,matHash):
         if matHash in self.hashMap:
