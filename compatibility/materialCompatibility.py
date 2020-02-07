@@ -68,22 +68,27 @@ class MaterialCompatibilizer():
         return
     
     ibunkn = [12,0,0,0, 42,102,7,93, 0,0,0,0]
+    ibrunkn = [12,0,0,0, 80,96,-124,93, 0,0,0,0]
     def compatibilize(self,materialPath):
         with open(materialPath,"rb") as mrl3File:
             m = BaseMrl3()
             m.marshall(FileLike(mrl3File.read()))
-            if m.Header.unknArr == self.ibunkn:
-                return
-            resources = m.Textures
-            self.updateHeader(m.Header)
-            for i in range(len(m.Materials)):
-                try:
-                    m.Materials[i] = self.compatibilizeMaterial(resources,m.Materials[i])
-                except:
-                    #print("Error Updating %s"%materialPath + str(e))
-                    raise
-            m.updateCountsAndOffsets()
-            newMat = m.serialize()
+        if m.Header.unknArr[0] == 12:
+            if m.header.unknArr == self.ibunkn:
+                m.header.unknArr = self.ibrunkn
+                with open(materialPath,"wb") as mrl3File:
+                    mrl3File.write(m.serialize())
+            return
+        resources = m.Textures
+        self.updateHeader(m.Header)
+        for i in range(len(m.Materials)):
+            try:
+                m.Materials[i] = self.compatibilizeMaterial(resources,m.Materials[i])
+            except:
+                #print("Error Updating %s"%materialPath + str(e))
+                raise
+        m.updateCountsAndOffsets()
+        newMat = m.serialize()
         with open(materialPath,"wb") as mrl3File:
             mrl3File.write(newMat)
             

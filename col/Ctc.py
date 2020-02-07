@@ -187,7 +187,7 @@ class Ctc():
                     b''.join([brecord.serialize() for brecord in self.brecords])
     def __iter__(self):
         return iter(self.Chains)
-
+"""
 if __name__ == "__main__":
     from pathlib import Path
     
@@ -210,7 +210,7 @@ if __name__ == "__main__":
                 if node.Matrix[0,3]!=0:
                     print(ctcf)
 
-    """
+
     uci = set()
     ui = set()
     ufs = [set() for _ in range(3)]
