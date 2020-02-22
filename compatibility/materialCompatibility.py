@@ -74,8 +74,8 @@ class MaterialCompatibilizer():
             m = BaseMrl3()
             m.marshall(FileLike(mrl3File.read()))
         if m.Header.unknArr[0] == 12:
-            if m.header.unknArr == self.ibunkn:
-                m.header.unknArr = self.ibrunkn
+            if m.Header.unknArr == self.ibunkn:
+                m.Header.unknArr = self.ibrunkn
                 with open(materialPath,"wb") as mrl3File:
                     mrl3File.write(m.serialize())
             return
