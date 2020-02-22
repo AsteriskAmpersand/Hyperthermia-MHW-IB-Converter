@@ -101,14 +101,14 @@ class MainWindow(QtWidgets.QMainWindow):
         dlg.setFileMode(QtWidgets.QFileDialog.ExistingFile)
         if dlg.exec_():
             filename = dlg.selectedFiles()
-        self.addFiles(filename)
+            self.addFiles(filename)
     def openFolder(self):
         dlg = QtWidgets.QFileDialog()
         dlg.setFileMode(QtWidgets.QFileDialog.Directory)
         dlg.setOption(dlg.ShowDirsOnly,False)
         if dlg.exec_():
             filenames = dlg.selectedFiles()
-        self.addFiles(filenames)
+            self.addFiles(filenames)
     def test(self):
         def get2Options(string):
             dlg = Options2(string)

@@ -68,17 +68,19 @@ class MaterialCompatibilizer():
         return
     
     ibunkn = [12,0,0,0, 42,102,7,93, 0,0,0,0]
-    ibrunkn = [12,0,0,0, 80,96,-124,93, 0,0,0,0]
+    ibrunkn = [12,0,0,0, 80,96,132,93, 0,0,0,0]
     def compatibilize(self,materialPath):
         with open(materialPath,"rb") as mrl3File:
-            m = BaseMrl3()
-            m.marshall(FileLike(mrl3File.read()))
-        if m.Header.unknArr[0] == 12:
-            if m.Header.unknArr == self.ibunkn:
-                m.Header.unknArr = self.ibrunkn
+            data = mrl3File.read()
+        if data[4] == 12:
+            if all((data[i] == self.ibunkn[i-4] for i in range(0x4,0x10))):
+                data = bytearray(data)
+                data[0x4:0x10] = self.ibrunkn
                 with open(materialPath,"wb") as mrl3File:
-                    mrl3File.write(m.serialize())
-            return
+                    mrl3File.write(data)
+        return
+        m = BaseMrl3()
+        m.marshall(FileLike(data))
         resources = m.Textures
         self.updateHeader(m.Header)
         for i in range(len(m.Materials)):
